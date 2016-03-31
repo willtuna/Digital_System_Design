@@ -6,7 +6,7 @@ module AddSub_Beh_with_Singed_ext(a,b,sub,s,ovf);
 		input [n-1:0] a;
 		input [m-1:0] b;
 
-		wire [n-1:0] ext_b= {   {n-m+1{b[m-1]}}  . b[m-2:0]}; //  extend the MSB of b;
+		wire [n-1:0] ext_b    = {   {n-m+1{b[m-1]}}  , b[m-2:0]}; //  extend the MSB of b;
 		//                n-m+1  ----------   +1  is for MSB itself
 		
 
