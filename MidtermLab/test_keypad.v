@@ -1,5 +1,5 @@
-`include "Column_Row_Shifter.v"
-
+`include "keypad.v"
+`timescale 1ns/1ps
 module Test_keypad;
 
     reg clk, rst;
@@ -7,7 +7,8 @@ module Test_keypad;
 	wire [7:0]press_pos;
 	wire [3:0] row_select;
 	wire [7:0] enc_out;
-    Keypad_Top keypad(clk, rst, in, row_select,enc_out);
+	wire pressed; 
+    Keypad_Top keypad(clk, rst, in, row_select,enc_out,pressed);
     /*initial begin
 		$fsdbDumpfile("waveform.fsdb");
 		$fsdbDumpvars;
@@ -32,21 +33,22 @@ module Test_keypad;
     end
 */    
     initial 
-    begin 
+    begin
 	#1 rst= 1'b1;
     #10 rst = 1'b0;
-    #1000000 in =4'b0100;
-    #5000000 in =4'b0000;
-    #1000000 in =4'b0100;
-    #1000000 in =4'b0000;
-    #1000000 in =4'b0100;
-    #1000000 in =4'b0000;
-    #5000000 in =4'b1000;
-    #1000000 in =4'b0000;
-    #1000000 in =4'b0001;
-    #1000000 in =4'b0000;
-	#1000000 $stop;
+	end
+    initial begin
+    #10000_0000 in =4'b0100;
+    #10000_0000 in =4'b0000;
+    #10000_0000 in =4'b0100;
+    #10000_0000 in =4'b0000;
+    #10000_0000 in =4'b0100;
+    #10000_0000 in =4'b0000;
+    #10000_0000 in =4'b1000;
+    #10000_0000 in =4'b0000;
+    #10000_0000 in =4'b0001;
+    #10000_0000 in =4'b0000;
+    #10000_0000 $stop;
     end
- 
 
 endmodule
